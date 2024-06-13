@@ -1,5 +1,6 @@
 # ZSH
 plugins=(git history-substring-search zsh-autosuggestions zsh-syntax-highlighting shrink-path)
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # GIT
 export git_primary_branch='main'
