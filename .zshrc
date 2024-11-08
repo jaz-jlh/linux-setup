@@ -3,15 +3,17 @@ plugins=(git history-substring-search zsh-autosuggestions zsh-syntax-highlightin
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # GIT
-export git_primary_branch='main'
+function get_default_branch {
+    git remote show origin | grep "HEAD branch" | sed 's/.*: //'
+}
 alias gitname='git rev-parse --symbolic-full-name --abbrev-ref HEAD'
 alias gits='git status'
 alias gitc='git commit -m'
 alias gitco='git checkout'
 alias gitp='git push origin $(gitname)'
-alias gitrbm='gitclean && gitco - && git rebase $git_primary_branch && gitp -f'
+alias gitrbm='gitclean && gitco - && git rebase $(get_default_branch) && gitp -f'
 alias gitd='git diff --color-words'
-alias gitclean='gitco $git_primary_branch && git pull && git prune && git fetch --prune'
+alias gitclean='gitco $(get_default_branch) && git pull && git prune && git fetch --prune'
 alias gitfu='gits && git add . && gits && git commit --amend && gitp -f'
 function newbranch {
     git checkout -b $1 && git push --set-upstream origin $1
