@@ -24,3 +24,9 @@ vscode: https://code.visualstudio.com/docs/setup/linux
 - SonarLint
 - Trunk Check
 - vscode-drawio
+
+# Mac
+
+## Karabiner elements
+
+https://karabiner-elements.pqrs.org
