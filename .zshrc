@@ -13,7 +13,7 @@ alias gitco='git checkout'
 alias gitp='git push origin $(gitname)'
 alias gitrbm='gitclean && gitco - && git rebase $(get_default_branch) && gitp -f'
 alias gitd='git diff --color-words'
-alias gitclean='gitco $(get_default_branch) && git pull && git prune && git fetch --prune'
+alias gitclean='gitco $(get_default_branch) && git pull && git prune && git fetch --prune && cleanbranches'
 alias gitfu='gits && git add . && gits && git commit --amend && gitp -f'
 function newbranch {
     git checkout -b $1 && git push --set-upstream origin $1
@@ -21,6 +21,9 @@ function newbranch {
 function delbranch {
     git branch -D $1 && git push --delete origin $1
 }
+# Cleanup local branches that have been deleted from remote
+# Skips worktree branches (with + sign)
+alias cleanbranches='git branch -vv | grep ": gone]" | grep -v "^+" | awk "{print \$1}" | xargs git branch -D'
 
 # NAVIGATION
 alias b='cd ..'
