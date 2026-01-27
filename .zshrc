@@ -10,6 +10,7 @@ alias gitname='git rev-parse --symbolic-full-name --abbrev-ref HEAD'
 alias gits='git status'
 alias gitc='git commit -m'
 alias gitco='git checkout'
+compdef gitco='git checkout' # Enable tab completion for git checkout
 alias gitp='git push origin $(gitname)'
 alias gitrbm='gitclean && gitco - && git rebase $(get_default_branch) && gitp -f'
 alias gitd='git diff --color-words'
