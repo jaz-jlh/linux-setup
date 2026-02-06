@@ -25,6 +25,9 @@ function delbranch {
 # Cleanup local branches that have been deleted from remote
 # Skips worktree branches (with + sign)
 alias cleanbranches='git branch -vv | grep ": gone]" | grep -v "^+" | awk "{print \$1}" | xargs git branch -D'
+function revert {
+    git checkout $(get_default_branch) -- $1
+}
 
 # NAVIGATION
 alias b='cd ..'
